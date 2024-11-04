@@ -1,5 +1,5 @@
 
-const API_URL = 'https://your-api-endpoint.com/pets';
+const API_URL = 'http://192.168.1.162:5000/api/mascotas';
 type TipoMascota = 'perro' | 'gato';
 type TipoComida = 'seca' | 'humeda' | 'mixta';
 interface Mascota {

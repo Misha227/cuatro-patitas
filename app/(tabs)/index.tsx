@@ -12,7 +12,7 @@ import { RadioButton } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import {savePetToApi} from '../controllers/PetController'
 type TipoMascota = 'perro' | 'gato';
 type TipoComida = 'seca' | 'humeda' | 'mixta';
 
@@ -52,6 +52,7 @@ const IngresoMascota: React.FC = () => {
     };
 
     try {
+      await savePetToApi(newPet)
       const existingPetsJson = await AsyncStorage.getItem('mascotas');
       let existingPets: Mascota[] = existingPetsJson ? JSON.parse(existingPetsJson) : [];
       existingPets.push(newPet);
