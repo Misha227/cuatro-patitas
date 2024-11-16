@@ -43,14 +43,20 @@ const Options: React.FC = () => {
     },
     {
       title: 'Cómo bañar a tu mascota',
-      icon: 'dog',
+      icon: 'dog-service',
       color: '#FF9800',
       onPress: () => router.push('/bath-guide'),
     },
     {
+      title: 'Entrenamiento',
+      icon: 'school',
+      color: '#E91E63',
+      onPress: () => router.push('/training-guide'),
+    },
+    {
       title: 'Salud',
       icon: 'heart-pulse',
-      color: '#F44336',
+  
       onPress: () => router.push('/health'),
     },
   ];
