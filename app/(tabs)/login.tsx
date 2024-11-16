@@ -20,24 +20,7 @@ const LoginScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
 
-  useEffect(() => {
-    const checkToken = async () => {
-      try {
-        const storedToken = await AsyncStorage.getItem('authToken');
-        if (storedToken) {
-          const decoded = jwtDecode(storedToken);
-          if (decoded.exp > Date.now() / 1000) {
-            navigation.navigate('WalletScreen');
-          } else {
-            await AsyncStorage.removeItem('authToken');
-          }
-        }
-      } catch (error) {
-        console.error('Error checking token:', error);
-      }
-    };
-    checkToken();
-  }, []);
+
 
   const handleLogin = async () => {
     if (!email || !password) {
