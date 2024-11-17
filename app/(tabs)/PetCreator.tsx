@@ -13,7 +13,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-//import {savePetToApi} from '../controllers/PetController'
+import { savePetToApi } from '../controllers/PetController';
+
 type TipoMascota = 'perro' | 'gato';
 type TipoComida = 'seca' | 'humeda' | 'mixta';
 
@@ -37,13 +38,30 @@ const IngresoMascota: React.FC = () => {
   const [tipoComida, setTipoComida] = useState<TipoComida>('seca');
   const router = useRouter();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (nombre.trim() === '' || raza === '' || peso === '' || edad === '') {
       Alert.alert('Error', 'Por favor, complete todos los campos.');
       return;
     }
-  
-    navigation.navigate('RazaInfo', { tipo, raza });
+
+    const newPet: Mascota = {
+      id: Date.now(), // Generate a unique ID
+      nombre,
+      tipo,
+      raza,
+      peso,
+      edad,
+      tipoComida,
+    };
+
+    try {
+      await savePetToApi(newPet);
+      Alert.alert('Éxito', 'Mascota guardada exitosamente.');
+      navigation.navigate('RazaInfo', { tipo, raza });
+    } catch (err) {
+      console.log(err);
+      Alert.alert('Error', 'Hubo un problema al guardar la mascota.');
+    }
   };
 
   const razas = {
@@ -130,7 +148,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 20,
   },
-  title: { 
+  title: {
     fontSize: 28,
     fontWeight: 'bold',
     color: '#4a4a4a',

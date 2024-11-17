@@ -1,5 +1,5 @@
 
-const API_URL = 'http://192.168.1.162:5000/api/mascotas';
+const API_URL = 'http://127.0.0.1:5000/api/mascotas';
 type TipoMascota = 'perro' | 'gato';
 type TipoComida = 'seca' | 'humeda' | 'mixta';
 interface Mascota {
@@ -12,23 +12,28 @@ interface Mascota {
     tipoComida: TipoComida;
   }
 
-export const savePetToApi = async (pet: Mascota): Promise<void> => {
-  try {
-    const response = await fetch(API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(pet),
-    });
 
-    if (!response.ok) {
-      throw new Error('Failed to save pet to the API');
+
+  export const savePetToApi = async (pet: Mascota): Promise<void> => {
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        mode: 'cors',  // Explicitly set CORS mode
+        body: JSON.stringify(pet),
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to save pet to the API');
+      }
+  
+      console.log('Pet saved successfully to the API');
+    } catch (error) {
+      console.error('Error saving pet to the API:', error);
+      throw error;
     }
-
-    console.log('Pet saved successfully to the API');
-  } catch (error) {
-    console.error('Error saving pet to the API:', error);
-    throw error;
-  }
-};
+  };

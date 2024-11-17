@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image,Button } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
@@ -76,6 +76,9 @@ const RazaInfo: React.FC = () => {
           <Text style={styles.exportTitle}>Como es esta raza?</Text>
           <Text style={styles.description}>{razaInfo.descripcion}</Text>
         </View>
+        <Button>
+          <Text>Siguiente</Text>
+        </Button>
       </View>
     </ScrollView>
   );
@@ -84,117 +87,71 @@ const RazaInfo: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f0f8ff',
+    backgroundColor: '#ffffff',
   },
   header: {
     padding: 20,
-    backgroundColor: '#4a90e2',
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 5,
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
   },
   petImage: {
-    width: '100%',
-    height: 200,
-    borderRadius: 10,
+    width: 120,
+    height: 120,
+    borderRadius: 60, // Circular image
+    borderWidth: 2,
+    borderColor: '#dcdcdc',
   },
   content: {
-    padding: 20,
+    paddingHorizontal: 20,
+    marginTop: 10,
   },
   title: {
     fontSize: 24,
-    fontFamily: 'Roboto-Bold',
-    color: '#4a4a4a',
-    marginBottom: 10,
+    fontWeight: 'bold',
+    color: '#333333',
     textAlign: 'center',
+    marginVertical: 10,
   },
   premiumFeatures: {
-    backgroundColor: '#fff',
+    backgroundColor: '#f5f5f5',
     padding: 15,
     borderRadius: 10,
-    marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 5,
+    marginBottom: 15,
   },
   premiumTitle: {
     fontSize: 18,
-    fontFamily: 'Roboto-Bold',
-    color: '#4a4a4a',
-    marginBottom: 10,
-  },
-  premiumItem: {
-    fontSize: 16,
-    fontFamily: 'Roboto-Regular',
-    color: '#4a4a4a',
-    marginBottom: 5,
-  },
-  exportData: {
-    backgroundColor: '#fff',
-    padding: 15,
-    borderRadius: 10,
-    marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 5,
-  },
-  exportTitle: {
-    fontSize: 18,
-    fontFamily: 'Roboto-Bold',
-    color: '#4a4a4a',
-    marginBottom: 10,
-  },
-  exportDescription: {
-    fontSize: 16,
-    fontFamily: 'Roboto-Regular',
-    color: '#4a4a4a',
-  },
-  pricing: {
-    backgroundColor: '#fff',
-    padding: 15,
-    borderRadius: 10,
-    marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 5,
-  },
-  pricingText: {
-    fontSize: 16,
-    fontFamily: 'Roboto-Bold',
-    color: '#4a4a4a',
-    textAlign: 'center',
-    marginBottom: 5,
-  },
-  description: {
-    fontSize: 16,
-    fontFamily: 'Roboto-Regular',
-    color: '#4a4a4a',
-    marginBottom: 20,
-    lineHeight: 24,
-  },
-  subtitle: {
-    fontSize: 18,
-    fontFamily: 'Roboto-Bold',
-    color: '#4a4a4a',
+    fontWeight: '600',
+    color: '#555555',
     marginBottom: 10,
   },
   caracteristica: {
     fontSize: 16,
-    fontFamily: 'Roboto-Regular',
-    color: '#4a4a4a',
+    color: '#666666',
     marginBottom: 5,
-    marginLeft: 10,
+  },
+  exportData: {
+    backgroundColor: '#ffffff',
+    borderWidth: 1,
+    borderColor: '#eeeeee',
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  exportTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#555555',
+    marginBottom: 10,
+  },
+  description: {
+    fontSize: 16,
+    color: '#444444',
+    lineHeight: 24,
   },
 });
-
 export default RazaInfo;

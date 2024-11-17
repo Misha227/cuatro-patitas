@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 
 import IngresoMascota from './PetCreator';
 import RazaInfo from './RazaInfo'
+import Options from './options'
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ export default function RootLayout() {
 
   return (
     <Stack.Navigator>
+      <Stack.Screen name="main" component={Options}/>
       <Stack.Screen name="ingreso" component={IngresoMascota} />
       <Stack.Screen name="razainfo" component={RazaInfo}/>
     </Stack.Navigator>

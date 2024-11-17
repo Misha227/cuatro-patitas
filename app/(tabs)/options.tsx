@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useRouter } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
 
 interface OptionCardProps {
   title: string;
@@ -20,20 +20,20 @@ const OptionCard: React.FC<OptionCardProps> = ({ title, icon, color, onPress }) 
 );
 
 const Options: React.FC = () => {
-  const router = useRouter();
+  const navigation = useNavigation();
 
   const options = [
     {
       title: 'Calendario',
       icon: 'calendar-month',
       color: '#4CAF50',
-      onPress: () => router.push('/calendar'),
+      onPress: () => navigation.navigate('calendar'),
     },
     {
       title: 'Vacunas',
       icon: 'needle',
       color: '#2196F3',
-      onPress: () => router.push('/vaccines'),
+      onPress: () => navigation.navigate('/vaccines'),
     },
     {
       title: 'Baño',
@@ -54,10 +54,11 @@ const Options: React.FC = () => {
       onPress: () => router.push('/training-guide'),
     },
     {
-      title: 'Salud',
-      icon: 'heart-pulse',
+      title: 'Nueva mascota',
+      icon: 'plus',
+      color: 'green',
   
-      onPress: () => router.push('/health'),
+      onPress: () => navigation.navigate('ingreso'),
     },
   ];
 
