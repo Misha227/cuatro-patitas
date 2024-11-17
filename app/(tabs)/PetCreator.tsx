@@ -43,9 +43,8 @@ const IngresoMascota: React.FC = () => {
       Alert.alert('Error', 'Por favor, complete todos los campos.');
       return;
     }
-
-    const newPet: Mascota = {
-      id: Date.now(), // Generate a unique ID
+  
+    const newPet = {
       nombre,
       tipo,
       raza,
@@ -53,17 +52,25 @@ const IngresoMascota: React.FC = () => {
       edad,
       tipoComida,
     };
-
+  
     try {
-      await savePetToApi(newPet);
+      const savedPetResponse = await savePetToApi(newPet);
+      console.log(savedPetResponse); 
+
+      const savedPet = savedPetResponse.pet; 
       Alert.alert('Éxito', 'Mascota guardada exitosamente.');
-      navigation.navigate('RazaInfo', { tipo, raza });
+      
+      // Now access id from savedPet
+      navigation.navigate('razainfo', {
+        petId: savedPet.id, // Correctly accessing id
+        tipo,
+        raza
+      });
     } catch (err) {
       console.log(err);
       Alert.alert('Error', 'Hubo un problema al guardar la mascota.');
     }
   };
-
   const razas = {
     perro: ['Labrador', 'Golden Retriever', 'Pastor Alemán', 'Bulldog', 'Poodle'],
     gato: ['Siamés', 'Persa', 'Maine Coon', 'Bengalí', 'Sphynx'],
